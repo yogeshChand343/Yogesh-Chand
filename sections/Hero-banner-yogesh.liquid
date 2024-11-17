@@ -1,0 +1,256 @@
+<div class="main-wrapper">
+  <div class="main-header-wrapper">
+    <div class="custom-container">
+      <div class="header-main">
+        <div class="mobile-icon">
+          <div class="mobile-icon-svg hamburger">
+            <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 6.5H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> </path>
+              <path d="M1 1.5H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M1 11.5H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <div class="mobile-icon-svg cross">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13.9997L13.7279 1.27177" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M1 1.00031L13.7279 13.7282" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+        {% if section.settings.logo != blank %}
+          <div class="logo">
+            <a href="{{ shop.url }}">
+            <picture>
+              <img loading="eager" src="{{ section.settings.logo | img_url: '152x' }}">
+            </picture>
+            </a>
+          </div>
+        {% endif %}
+        {% if section.settings.header_title != blank %}
+          <div class="desktop desktop-header-content">
+              <p>{{ section.settings.header_title }}</p>
+          </div>
+        {% endif %}
+        {% if section.settings.button_link != blank %}
+          <div class="desktop animation-btn yellow">
+            <a href="{{ section.settings.button_link }}">
+              <span class="btn-text">{{ section.settings.header_button_text }}</span>
+              <span class="arrow-svg-wrapper">
+                <svg width="31" height="12" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="black"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+      <div class="mobile-dropdown-wrapper">
+        <div class="mobile-dropdown-inner">
+          {% if section.settings.header_title != blank %}
+            <div class="mobile-drop-content">
+              <p>{{ section.settings.header_title }}</p>
+            </div>
+          {% endif %}
+          {% if section.settings.button_link != blank %}
+            <div class="mobile-drop-btn animation-btn yellow">
+              <a href="{{ section.settings.button_link }}">
+                <span class="btn-text">{{ section.settings.header_button_text }}</span>
+                <span class="arrow-svg-wrapper">
+                  <svg width="31" height="12" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="black"></path>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-banner-wrapper">
+    <div class="content">
+      <div class="content-inner">
+        {% if section.settings.banner_title != blank %}
+          <h2>{{ section.settings.banner_title }}</h2>
+        {% endif %}
+        {% if section.settings.banner_desc_mobile != blank %}
+          <p class="mobile">{{ section.settings.banner_desc_mobile }}</p>
+        {% endif %}
+        {% if section.settings.banner_desc_desktop != blank %}
+        <p class="desktop">{{ section.settings.banner_desc_desktop }}</p>
+        {% endif %}
+        {% if section.settings.banner_button_link != blank %}
+        <div class="desktop desktop-banner-btn animation-btn black">
+          <a href="{{ section.settings.banner_button_link }}">
+            <span class="btn-text">{{ section.settings.banner_button_text }}</span>
+            <span class="arrow-svg-wrapper">
+              <svg width="31" height="12" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="black"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="image-wrapper">
+      {% if section.settings.banner_mobile != blank or section.settings.banner_desktop != blank %}
+        <picture>
+          <source media="(min-width:768px)" srcset="{{ section.settings.banner_desktop | img_url: '1400x' }}">
+          <source media="(max-width:767px)" srcset="{{ section.settings.banner_mobile | img_url: '768x' }}">
+          <img src="{{ section.settings.banner_desktop | img_url: '1400x' }}" width="100%" height="100%">
+        </picture>
+      {% else %}
+       {{ 'lifestyle-2' | placeholder_svg_tag }}
+      {% endif %}
+     
+    </div>
+    <div class="mobile mobile-banner-btn">
+      {% if section.settings.banner_button_link != blank %}
+      <div class="animation-btn black">
+        <a href="{{ section.settings.banner_button_link }}">
+          <span class="btn-text">{{ section.settings.banner_button_text }}</span>
+          <span class="arrow-svg-wrapper">
+            <svg width="31" height="12" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="black"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="info-wrapper">
+    {% if section.settings.banner-info-bottom-desktop != blank %}
+    <p class="desktop">{{ section.settings.banner-info-bottom-desktop }}</p>
+    {% endif %}
+    {% if section.settings.banner-info-bottom-mobile != blank %}
+    <p class="mobile">{{ section.settings.banner-info-bottom-mobile }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+function heroBannerInit(){
+  const mobHambBtn = document.querySelector(".mobile-icon");
+  
+  mobHambBtn.addEventListener("click", function() {
+    this.classList.toggle("active");
+    this.closest(".header-main").classList.toggle("active");
+    
+    const dropDownPanel = this.closest(".header-main").nextElementSibling;
+    console.log("dropDownPanel", dropDownPanel);
+    if (dropDownPanel.style.maxHeight) {
+      dropDownPanel.style.maxHeight = null;
+    } else {
+      dropDownPanel.style.maxHeight = dropDownPanel.scrollHeight + "px";
+    } 
+  });
+}
+heroBannerInit()
+</script>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "logo"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "default": "Find the ideal gift for your loved ones.",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_button_text",
+      "label": "Button text",
+      "default": "Choose Gift"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Image Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_mobile",
+      "label": "Banner Image Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_desktop",
+      "label": "Banner Image Desktop"
+    },
+    {
+      "type": "header",
+      "content": "Image banner content"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_desc_mobile",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination.",
+      "label": "Banner description mobile"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "banner_desc_desktop",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+      "label": "Banner description desktop"
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Banner button text",
+      "default": "Choose Gift"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_link",
+      "label": "Banner button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Banner bottom info"
+    },
+    {
+      "type": "text",
+      "id": "banner-info-bottom-mobile",
+      "label": "Banner bottom info mobile",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+    },
+    {
+      "type": "text",
+      "id": "banner-info-bottom-desktop",
+      "label": "Banner bottom info desktop",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ],
+}
+{% endschema %}

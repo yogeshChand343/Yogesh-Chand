@@ -1,0 +1,409 @@
+
+<div class="product-grid-main">
+  <div class="custom-container">
+    <div class="product-grid-inner">
+      {% if section.settings.heading != blank %}
+        <div class="product-grid-header">
+          <h2>{{ section.settings.heading }}</h2>
+        </div>
+      {% endif %}
+      {% if section.blocks.size > 0 %}
+        <div class="product-grid-wrapper">
+          {% for block in section.blocks %}
+            {% assign product = block.settings.product %}
+            
+            <div class="product-grid" data-product-id="{{ product.id }}">
+              <div class="product-grid-image">
+                <picture>
+                  <img loading="lazy" src="{{ product.featured_image.src | img_url: '550x' }}" width="100%" height="100%">
+                </picture>
+              </div>
+              <div class="card-tolltip-main" style="top: {{ block.settings.top_pos }}%; left: {{ block.settings.left_pos }}%;">
+                <div class="card-tooltip-inner">
+                  <button class="grid-popup-btn-wrapper"  data-handle="{{ product.handle }}">+</button>
+                  <div class="popup-card-small small-popup-card-{{ product.handle }}" data-handle="{{ product.handle }}">
+                    <div class="popup-card-small-inner">
+                      <div class="popup-small-image">
+                        <picture>
+                          <img loading="lazy" src="{{ product.featured_image.src | img_url: '550x' }}" width="100%" height="100%">
+                        </picture>
+                      </div>
+                      <div class="popup-small-content">
+                        <div class="popup-small-title">{{ product.title }}</div>
+                        <div class="popup-small-price">
+                          {% if product.compare_at_price > product.price %}
+                            <!-- Sale Price -->
+                            <span class="sale-price">{{ product.price | money }}</span>
+                            <!-- Compare-at Price -->
+                            <span class="compare-price line-through">{{ product.compare_at_price | money }}</span>
+                          {% else %}
+                            <!-- Regular Price -->
+                            <span class="regular-price">{{ product.price | money }}</span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="product-cart-popup-main hide popup-card-{{ product.handle }}">
+              <div class="popup-card" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}">
+                <div class="popup-card-inner">
+                  <button class="popupClose"><span>+</span></button>
+                  <div class="popup-card-content">
+                    <div class="card-image-title">
+                      <div class="card-image">
+                        <picture>
+                          <img loading="lazy" src="{{ product.featured_image.src | img_url: '550x' }}" width="100%" height="100%">
+                        </picture>
+                      </div>
+                      <div class="card-info">
+                        <h4>{{ product.title }}</h4>
+                        <div>
+                          {% if product.compare_at_price > product.price %}
+                            <!-- Sale Price -->
+                            <span class="sale-price">{{ product.price | money }}</span>
+                            <!-- Compare-at Price -->
+                            <span class="compare-price line-through">{{ product.compare_at_price | money }}</span>
+                          {% else %}
+                            <!-- Regular Price -->
+                            <span class="regular-price">{{ product.price | money }}</span>
+                          {% endif %}
+                        </div>
+                        <div>{{ product.description }}</div>
+                      </div>
+                    </div>
+                     <!-- swatch -->
+                    <div class="swatch-container">
+                      <!-- Color Swatch -->
+                      <div class="color-swatch-wrapper-main">
+                        <label>Color:</label>
+                        <div class="color-swatch-wrapper">
+                          {% assign colors = product.variants | map: 'option2' | uniq %}
+                          {% for color in colors %}
+                            <div 
+                              class="color-swatch" 
+                              data-color="{{ color }}">
+                            <div class="swatch-color-inner" style="background-color: {{ color | handleize }};"></div>
+                            <div class="swatch-color-title">{{ color }}</div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+  
+                      <!-- Size Swatch Dropdown -->
+                      <div class="size-swatch-wrapper">
+                        <label for="size-swatch-{{ product.id }}">Size:</label>
+                        <details class="size-select-swapper">
+                          <summary class="custom-swatch">
+                            <div class="custom-swatch-default">Choose our size</div>
+                            <div class="custom-swatch-dropIcon">
+                              <div class="custom-swatch-icon">
+                                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M2 2L8 8L14 2" stroke="black" stroke-width="1.5" stroke-linecap="square"></path>
+                                </svg>
+                              </div>
+                            </div>
+                          </summary>
+                          <div class="custom-swatch-dropdown">
+                            {% for variant in product.variants %}
+                              {% if variant.option1 %}
+                                <div class="custom-select-option" data-value="{{ variant.option1 }}">{{ variant.option1 }}</div>
+                              {% endif %}
+                            {% endfor %}
+                          </div>
+                          <select class="size-swatch " id="size-swatch-{{ product.id }}">
+                            <option value="">Choose our size</option>
+                            {% for variant in product.variants %}
+                              {% if variant.option1 %}
+                                <option value="{{ variant.option1 }}">{{ variant.option1 }}</option>
+                              {% endif %}
+                            {% endfor %}
+                          </select>
+                        </details>
+                      </div>
+                      <!-- swatch end -->
+                    </div>
+                  <!-- Add to Cart Button -->
+                  </div>
+                  <div class="popup-atc-wrapper">
+                    <div class="animation-btn yellow">
+                      <button class="add-to-cart-button" data-product-id="{{ product.id }}">
+                        <span class="btn-text">Add to cart</span>
+                        <span class="arrow-svg-wrapper">
+                          <svg width="31" height="12" viewBox="0 0 31 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.36377 4.80469L0.61377 4.80469L0.613769 6.30469L1.36377 6.30469L1.36377 4.80469ZM30.184 6.08502C30.4768 5.79213 30.4768 5.31725 30.184 5.02436L25.411 0.251388C25.1181 -0.0415052 24.6432 -0.0415052 24.3503 0.251388C24.0574 0.544282 24.0574 1.01916 24.3503 1.31205L28.593 5.55469L24.3503 9.79733C24.0574 10.0902 24.0574 10.5651 24.3503 10.858C24.6432 11.1509 25.1181 11.1509 25.411 10.858L30.184 6.08502ZM1.36377 6.30469L29.6536 6.30469L29.6536 4.80469L1.36377 4.80469L1.36377 6.30469Z" fill="black"></path>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function productGridInit(){
+    const popupTriggerBtns = document.querySelectorAll(".grid-popup-btn-wrapper");
+    const popups = document.querySelectorAll(".product-cart-popup-main");
+    const popupCloseBtns = document.querySelectorAll(".popupClose");
+    const productCards = document.querySelectorAll(".popup-card");
+
+    // product card opening listener
+    popupTriggerBtns?.forEach(btn=>{
+      btn.addEventListener("click",(e)=>{
+
+        //Close opened popup trigger
+        resetProductCard();
+        
+        const clickedProHandle = e.target.dataset.handle;
+        const openingCard = document.querySelector(`.popup-card-${clickedProHandle}`);
+        const smallPopupCard= document.querySelector(`.small-popup-card-${clickedProHandle}`)
+
+        // check screen size and open popup accordingly
+        if (window.matchMedia('(min-width: 1600px)').matches) {
+          smallPopupCard.classList.contains("active") ? smallPopupCard?.classList.remove("active") : smallPopupCard?.classList.add("active");
+        }else {
+          openingCard?.classList.remove("hide");
+          //Lock document scroll
+          lockDocumentScroll(true);
+        }
+      })
+    })
+
+    // popup close listener when clicked on close btn
+    document.addEventListener("click", (e)=>{
+      if(e.target.classList.contains("product-cart-popup-main") || e.target.classList.contains("popupClose")){
+        resetProductCard();
+
+        // unload document scroll
+        lockDocumentScroll(false);
+      }
+
+      if(e.target.classList.contains("custom-swatch-default") || e.target.closest("summary")){
+
+        // reset selector to default
+        const detailTag = e.target.closest("details");
+        detailTag.querySelector(".custom-swatch-default").textContent = "Choose our size";
+      }
+
+      if(e.target.classList.contains("custom-select-option")){
+        updatePopupSelector(e.target)
+      }
+
+      // trigger to open small popup card
+      if(e.target.classList.contains("popup-card-small") || e.target.closest(".popup-card-small")){
+        const openingCard = document.querySelector(`.popup-card-${e.target.dataset.handle}`);
+        openingCard?.classList.remove("hide");
+        //Lock document scroll
+        lockDocumentScroll(true);
+      }
+    })
+
+    function updatePopupSelector(ele){
+      const value = ele.dataset.value;
+      const select = ele.closest(".custom-swatch-dropdown").nextElementSibling;
+      const detailTag = ele.closest("details");
+
+      // update text and select value
+      detailTag.querySelector(".custom-swatch-default").textContent = value;
+      select.value = value;
+      
+      // Event dispatch
+      const changeEvent = new Event("change", { bubbles: true });
+      select.dispatchEvent(changeEvent);
+      
+      // close dropdown
+      detailTag.removeAttribute("open");
+    }
+
+    // close all popup
+    function resetProductCard() {
+      popups?.forEach(popup=>popup.classList.add("hide"));
+
+      // unload document scroll
+      lockDocumentScroll(false);
+    }
+
+    // load document scroll
+    function lockDocumentScroll(action) {
+      action ? document.body.classList.add("scroll-lock") : document.body.classList.remove("scroll-lock");
+    }
+
+    // popup card functionality
+    productCards.forEach((card) => {
+      const sizeSwatch = card.querySelector(".size-swatch");
+      const colorSwatches = card.querySelectorAll(".color-swatch");
+      const addToCartButton = card.querySelector(".add-to-cart-button");
+  
+      let selectedSize = sizeSwatch.value;
+      let selectedColor = null;
+  
+      // Handle size change
+      sizeSwatch.addEventListener("change", (e) => {
+        selectedSize = e.target.value;
+      });
+  
+      // Handle color selection
+      colorSwatches.forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          // Reset active state
+          colorSwatches.forEach((s) => s.classList.remove("active"));
+          swatch.classList.add("active");
+  
+          selectedColor = swatch.getAttribute("data-color");
+        });
+      });
+
+      // check if product options is medium and black
+      function addGiftProduct(variant) {
+          // Ensure the product has options
+        if (!variant || !variant.options || variant.options.length === 0) {
+          return false;
+        }
+      
+        // Check if the product options include "Medium" and "Black"
+        const hasSizeMedium = variant.options.includes('M');
+        const hasColorBlack = variant.options.includes('Black');
+      
+        // Return true if both conditions are met, otherwise false
+        return hasSizeMedium && hasColorBlack;
+      }
+
+      
+  
+      // Add to cart functionality
+      addToCartButton.addEventListener("click", () => {
+        if (!selectedColor || !selectedSize) {
+          alert("Please select both size and color before adding to cart.");
+          return;
+        }
+  
+        const productHandle = card.getAttribute("data-product-handle");
+  
+        // Find the correct variant based on selected options
+        fetch(`/products/${productHandle}.js`)
+          .then((res) => res.json())
+          .then((product) => {
+            const variant = product.variants.find(
+              (v) =>
+                v.option1 === selectedSize && v.option2 === selectedColor
+            );
+  
+            if (variant) {
+              
+              // check if add gift product
+              const result = addGiftProduct(variant)
+              let formData;
+              if(result){
+                formData = {
+                  items: [
+                      {
+                        id: variant.id,
+                        quantity: 1
+                      },
+                      {
+                        id: 45952853835942,
+                        quantity: 1
+                      }
+                    ]
+                }
+              }else {
+                formData = {
+                  id: variant.id,
+                  quantity: 1,
+                }
+              }
+
+              // Add the selected variants to the cart
+              fetch("/cart/add.js", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+              })
+                .then(() => {
+                  alert("Added to cart successfully!");
+                })
+                .catch(() => {
+                  alert("Failed to add to cart.");
+                });
+              
+            } else {
+              alert("Variant not found.");
+            }
+          });
+      });
+    });
+  }
+  productGridInit()
+
+
+</script>
+
+{% schema %}
+  {
+    "name": "Product grid",
+    "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Tisso vison in the wild"
+        }
+      ],
+      "blocks": [
+         {
+           "name": "Product card",
+           "type": "card",
+           "limit": 6,
+           "settings": [
+             {
+              "type": "product",
+              "id": "product",
+              "label": "Product"
+             },
+             {
+               "type": "header",
+               "content": "Button Position"
+             },
+             {
+                "type": "range",
+                "id": "top_pos",
+                "min": 0,
+                "max": 100,
+                "step": 2,
+                "unit": "%",
+                "label": "Top",
+                "default": 50
+             },
+             {
+                "type": "range",
+                "id": "left_pos",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "%",
+                "label": "Left",
+                "default": 50
+             }
+           ]
+         }
+      ],
+      "presets": [
+      {
+        "name": "Product grid"
+      }
+    ],
+  }
+{% endschema %}
